@@ -1,6 +1,10 @@
 class MicropostsController < ApplicationController
   # GET /microposts
   # GET /microposts.json
+  before_filter :sign_in_user
+  before_filter :correct_user, only: :destory
+  
+  
   def index
     @microposts = Micropost.all
 
@@ -72,12 +76,15 @@ class MicropostsController < ApplicationController
   # DELETE /microposts/1
   # DELETE /microposts/1.json
   def destroy
-    @micropost = Micropost.find(params[:id])
-    @micropost.destroy
+     @micropost.destroy
 
-    respond_to do |format|
-      format.html { redirect_to microposts_url }
-      format.json { head :no_content }
-    end
+    redirect_to root_url
   end
+  
+  private 
+    def correct_user
+      @micropost = current_user.microposts.find_by_id(params[:id])
+      redirect_to_root_url if @micropost.nil?
+    end
+    
 end
