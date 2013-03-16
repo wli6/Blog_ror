@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name
-  has_many :microposts
+	has_secure_password
+	has_many :microposts
+    attr_accessible :name, :email, :password, :password_confirmation
 end

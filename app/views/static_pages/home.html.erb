@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Wenbin's Ruby on Rails Sample App | Home</title>
-  </head>
-  <body>
-    <h1>Wenbin's Sample App</h1>
-    <p>
-      This is the home page for my blog application.
-    </p>
-  </body>
-</html>
+<% provide :title, "Home"%>  
+<div class="center hero-unit">
+  <h1>Welcome to the Wenbin's Sample app</h1>
+
+  <h2>
+    This is the home page  
+  </h2>
+
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+</div>
